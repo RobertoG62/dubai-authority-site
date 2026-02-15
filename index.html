@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="המדריך המקיף לדובאי ואבו דאבי 2026. אטרקציות יוקרה, מסלולים, מחירים וטיפים מהשטח.">
+    <meta property="og:title" content="Dubai & Abu Dhabi Insider | יוקרה פוגשת מדבר עתיק">
+    <meta property="og:description" content="גלו את דובאי ואבו דאבי: אדריכלות עתידנית, יוקרה אולטרא, אוצרות תרבות ואטרקציות חובה ב-2026.">
+    <meta property="og:type" content="website">
+    <title>Dubai & Abu Dhabi Insider | יוקרה פוגשת מדבר עתיק</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Heebo', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        'dubai-sand': '#F5EDE0',
+                        'dubai-teal': '#C5A059',
+                        'dubai-deep-blue': '#0F172A',
+                        'dubai-orange': '#D4A437',
+                        'dubai-sunset': '#E8751A',
+                        'dubai-earth': '#8B7D6B',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #F5EDE0; color: #1F2937; }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .card-lift {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+        }
+        .card-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(15, 23, 42, 0.12);
+        }
+
+        .active-tab {
+            border-bottom: 3px solid #C5A059;
+            color: #0F172A;
+            font-weight: 700;
+        }
+        .inactive-tab {
+            border-bottom: 3px solid transparent;
+            color: #6B7280;
+        }
+        .inactive-tab:hover { color: #C5A059; }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            height: 300px;
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 350px; }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F5EDE0; }
+        ::-webkit-scrollbar-thumb { background: #8B7D6B; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0F172A; }
+
+        .hero-bg {
+            background-image:
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(197, 160, 89, 0.45)),
+                url('images/gallery/Burj Khalifa.png');
+            background-size: cover;
+            background-position: center 40%;
+        }
+
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        opacity 0.4s ease,
+                        padding 0.4s ease;
+        }
+        .mobile-menu.open {
+            max-height: 320px;
+            opacity: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+
+        .stat-divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+        }
+
+        @keyframes fab-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.5); }
+            50% { box-shadow: 0 0 0 14px rgba(197, 160, 89, 0); }
+        }
+        .fab-glow {
+            animation: fab-pulse 2.5s ease-in-out infinite;
+        }
+        .fab-glow:hover {
+            animation: none;
+            box-shadow: 0 8px 32px rgba(197, 160, 89, 0.4);
+            transform: scale(1.08);
+        }
+
+        .lang-toggle {
+            display: inline-flex;
+            border-radius: 9999px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .lang-btn {
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .lang-btn.active {
+            background: #C5A059;
+            color: #0F172A;
+        }
+        .lang-btn:not(.active) {
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+        }
+        .lang-btn:not(.active):hover {
+            color: #fff;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        .gallery-item img {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-caption {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 2rem;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 75vh;
+            border-radius: 1rem;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body class="font-sans leading-relaxed">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-dubai-deep-blue/95 backdrop-blur-md text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 lg:px-8 py-3.5 flex justify-between items-center">
+            <a href="#" class="text-2xl font-display font-bold tracking-wider flex items-center gap-2 hover:opacity-90 transition">
+                <i class="fa-solid fa-mosque text-dubai-teal"></i>
+                Dubai<span class="text-dubai-teal">Insider</span>
+            </a>
+
+            <div id="desktop-nav" class="hidden md:flex space-x-8 space-x-reverse text-sm font-medium">
+                <a href="#trinity" class="hover:text-dubai-teal transition-colors duration-300" data-i18n="nav_trinity">שלושת המוקדים</a>
+                <a href="#logistics" class="hover:text-dubai-teal transition-colors duration-300" data-i18n="nav_logistics">לוגיסטיקה</a>
+                <a href="#itineraries" class="hover:text-dubai-teal transition-colors duration-300" data-i18n="nav_itineraries">מסלולים</a>
+                <a href="#gallery" class="hover:text-dubai-teal transition-colors duration-300" data-i18n="nav_gallery">גלריה</a>
+                <a href="#essentials" class="hover:text-dubai-teal transition-colors duration-300" data-i18n="nav_essentials">חובה לדעת</a>
+            </div>
+
+            <div class="hidden md:flex items-center gap-4">
+                <div class="lang-toggle">
+                    <button onclick="setLanguage('he')" id="lang-he" class="lang-btn active">HE</button>
+                    <button onclick="setLanguage('en')" id="lang-en" class="lang-btn">EN</button>
+                </div>
+                <a href="#itineraries" class="bg-dubai-teal text-dubai-deep-blue font-bold text-sm py-2 px-5 rounded-full hover:bg-white transition-colors duration-300" data-i18n="nav_cta">
+                    תכננו את הטיול
+                </a>
+            </div>
+
+            <button onclick="toggleMobileMenu()" id="menu-btn" class="md:hidden text-dubai-teal text-xl p-1 focus:outline-none" aria-label="תפריט">
+                <i class="fa-solid fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-dubai-deep-blue border-t border-white/10">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="#trinity" onclick="closeMobileMenu()" class="text-white/90 hover:text-dubai-teal transition py-1" data-i18n="nav_trinity">שלושת המוקדים</a>
+                <a href="#logistics" onclick="closeMobileMenu()" class="text-white/90 hover:text-dubai-teal transition py-1" data-i18n="nav_logistics">לוגיסטיקה</a>
+                <a href="#itineraries" onclick="closeMobileMenu()" class="text-white/90 hover:text-dubai-teal transition py-1" data-i18n="nav_itineraries">מסלולים</a>
+                <a href="#gallery" onclick="closeMobileMenu()" class="text-white/90 hover:text-dubai-teal transition py-1" data-i18n="nav_gallery">גלריה</a>
+                <a href="#essentials" onclick="closeMobileMenu()" class="text-white/90 hover:text-dubai-teal transition py-1" data-i18n="nav_essentials">חובה לדעת</a>
+                <div class="flex justify-center pt-2">
+                    <div class="lang-toggle">
+                        <button onclick="setLanguage('he')" class="lang-btn-mobile lang-btn active">HE</button>
+                        <button onclick="setLanguage('en')" class="lang-btn-mobile lang-btn">EN</button>
+                    </div>
+                </div>
+                <a href="#itineraries" onclick="closeMobileMenu()" class="bg-dubai-teal text-dubai-deep-blue font-bold text-sm text-center py-2.5 px-5 rounded-full mt-2" data-i18n="nav_cta">
+                    תכננו את הטיול
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="hero" class="relative min-h-[100dvh] flex items-center justify-center overflow-hidden hero-bg">
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+        <div class="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8 text-sm">
+                <i class="fa-solid fa-trophy text-dubai-teal"></i>
+                <span data-i18n="hero_badge">יעד תיירות #1 במזרח התיכון 2026 — 20M+ מבקרים בשנה</span>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 tracking-tight leading-tight" data-i18n-html="hero_title">
+                גלו את<br>
+                <span class="text-dubai-teal">דובאי ואבו דאבי</span> 2026
+            </h1>
+
+            <p class="text-lg md:text-xl text-white/85 max-w-2xl mx-auto mb-10 font-light leading-relaxed" data-i18n-html="hero_sub">
+                יוקרה אולטרא פוגשת מדבר עתיק. אדריכלות עתידנית, אוצרות תרבות ופארקי שעשועים מהחלומות.
+                <br class="hidden md:block">
+                המדריך המלא לאמירויות 2026.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#itineraries" class="bg-dubai-teal text-dubai-deep-blue font-bold py-3.5 px-10 rounded-full shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 text-lg" data-i18n-html="hero_cta1">
+                    <i class="fa-solid fa-route ml-2"></i>
+                    תכננו את הטיול
+                </a>
+                <a href="#trinity" class="border-2 border-white/60 text-white font-bold py-3.5 px-10 rounded-full hover:bg-white hover:text-dubai-deep-blue transition-all duration-300 text-lg" data-i18n-html="hero_cta2">
+                    גלו את האמירויות
+                    <i class="fa-solid fa-arrow-down mr-2"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-28 md:bottom-24 left-1/2 -translate-x-1/2 z-10 animate-float">
+            <i class="fa-solid fa-chevron-down text-white/40 text-2xl"></i>
+        </div>
+
+        <div class="absolute bottom-0 w-full z-10 glass border-t border-white/10">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-center items-center py-5 gap-6 md:gap-12">
+                    <div class="text-center">
+                        <span class="block text-2xl md:text-3xl font-bold text-dubai-deep-blue">20M+</span>
+                        <span class="text-xs md:text-sm text-dubai-earth uppercase tracking-widest" data-i18n="stat_tourists">מבקרים בשנה</span>
+                    </div>
+                    <div class="stat-divider hidden sm:block"></div>
+                    <div class="text-center">
+                        <span class="block text-2xl md:text-3xl font-bold text-dubai-deep-blue">828m</span>
+                        <span class="text-xs md:text-sm text-dubai-earth uppercase tracking-widest" data-i18n="stat_burj">בורג׳ ח׳ליפה</span>
+                    </div>
+                    <div class="stat-divider hidden sm:block"></div>
+                    <div class="text-center">
+                        <span class="block text-2xl md:text-3xl font-bold text-dubai-deep-blue">35°C</span>
+                        <span class="text-xs md:text-sm text-dubai-earth uppercase tracking-widest" data-i18n="stat_temp">ממוצע שנתי</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRINITY — REGION CARDS -->
+    <section id="trinity" class="py-20 bg-dubai-sand">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block text-dubai-teal text-sm font-bold uppercase tracking-[0.2em] mb-3" data-i18n="trinity_label">Explore The Emirates</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold text-dubai-deep-blue" data-i18n="trinity_title">שלושת המוקדים של האמירויות</h2>
+                <p class="text-gray-500 mt-3 max-w-xl mx-auto" data-i18n="trinity_sub">כל אזור מציע עולם שלם. בחרו את המוקד שלכם — או שלבו בין כולם.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card: Dubai Coast -->
+                <div onclick="expandRegion('coast')" id="card-coast" class="group bg-white rounded-2xl shadow-sm overflow-hidden cursor-pointer card-lift border-b-4 border-transparent hover:border-dubai-teal transition-colors duration-300">
+                    <div class="h-48 bg-cover bg-center relative" style="background-image: url('images/gallery/Burj Khalifa.png');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-4 right-4 flex items-center gap-2">
+                            <div class="w-10 h-10 bg-dubai-teal rounded-full flex items-center justify-center text-white">
+                                <i class="fa-solid fa-city"></i>
+                            </div>
+                            <span class="text-white font-display font-bold text-xl">Dubai Marina</span>
+                        </div>
+                    </div>
+                    <div class="p-6" data-i18n-html="card_coast_body">
+                        <h3 class="font-bold text-lg text-dubai-deep-blue mb-1">מרינה, JBR ופאלם ג'ומיירה</h3>
+                        <p class="text-sm text-gray-500 mb-4">קו חוף יוקרתי, מגדלים מרהיבים ופארקי מים מהחלומות.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-teal mt-0.5"></i><span>Aquaventure Waterpark — 320-345 AED</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-teal mt-0.5"></i><span>Dubai Marina Walk — טיילת בין מגדלי-על</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-teal mt-0.5"></i><span>JBR Beach — חוף חופשי עם מסעדות מול הים</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-teal mt-0.5"></i><span>Ain Dubai — גלגל הענק הגבוה בעולם (250m)</span></li>
+                        </ul>
+                        <div class="mt-5 text-dubai-teal font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                            <span data-i18n="discover_more">גלו עוד</span>
+                            <i class="fa-solid fa-arrow-left text-xs" data-i18n-arrow></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card: Downtown & Old Dubai -->
+                <div onclick="expandRegion('downtown')" id="card-downtown" class="group bg-white rounded-2xl shadow-sm overflow-hidden cursor-pointer card-lift border-b-4 border-transparent hover:border-dubai-deep-blue transition-colors duration-300">
+                    <div class="h-48 bg-cover bg-center relative" style="background-image: url('images/gallery/Museum of the Future.png');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-4 right-4 flex items-center gap-2">
+                            <div class="w-10 h-10 bg-dubai-deep-blue rounded-full flex items-center justify-center text-white">
+                                <i class="fa-solid fa-landmark"></i>
+                            </div>
+                            <span class="text-white font-display font-bold text-xl">Downtown</span>
+                        </div>
+                    </div>
+                    <div class="p-6" data-i18n-html="card_downtown_body">
+                        <h3 class="font-bold text-lg text-dubai-deep-blue mb-1">דאונטאון, דובאי העתיקה ודיירה</h3>
+                        <p class="text-sm text-gray-500 mb-4">בורג׳ ח׳ליפה, מוזיאון העתיד, השוק הזהב ועולם התרבות.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-deep-blue mt-0.5"></i><span>Burj Khalifa — At the Top: 169-769 AED</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-deep-blue mt-0.5"></i><span>Museum of the Future — 169-399 AED</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-deep-blue mt-0.5"></i><span>Dubai Frame — תצפית פנורמית, 50 AED</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-deep-blue mt-0.5"></i><span>Gold & Spice Souks — שווקים מסורתיים בדיירה</span></li>
+                        </ul>
+                        <div class="mt-5 text-dubai-deep-blue font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                            <span data-i18n="discover_more">גלו עוד</span>
+                            <i class="fa-solid fa-arrow-left text-xs" data-i18n-arrow></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card: Abu Dhabi -->
+                <div onclick="expandRegion('abudhabi')" id="card-abudhabi" class="group bg-white rounded-2xl shadow-sm overflow-hidden cursor-pointer card-lift border-b-4 border-transparent hover:border-dubai-sunset transition-colors duration-300">
+                    <div class="h-48 bg-cover bg-center relative" style="background-image: url('images/gallery/Sheikh Zayed Grand Mosque.png');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-4 right-4 flex items-center gap-2">
+                            <div class="w-10 h-10 bg-dubai-sunset rounded-full flex items-center justify-center text-white">
+                                <i class="fa-solid fa-mosque"></i>
+                            </div>
+                            <span class="text-white font-display font-bold text-xl">Abu Dhabi</span>
+                        </div>
+                    </div>
+                    <div class="p-6" data-i18n-html="card_abudhabi_body">
+                        <h3 class="font-bold text-lg text-dubai-deep-blue mb-1">תרבות, הרפתקאות ואיים</h3>
+                        <p class="text-sm text-gray-500 mb-4">לובר, פרארי וורלד, מסגד שייח' זאיד ואי יאס.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-sunset mt-0.5"></i><span>Louvre Abu Dhabi — 63 AED, אדריכלות ז'אן נובל</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-sunset mt-0.5"></i><span>Ferrari World — רכבת ההרים המהירה בעולם</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-sunset mt-0.5"></i><span>Yas Island — 4 פארקים, Multi-Park 475 AED/2</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-sunset mt-0.5"></i><span>Qasr Al Watan — הארמון הנשיאותי, 65 AED</span></li>
+                        </ul>
+                        <div class="mt-5 text-dubai-sunset font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                            <span data-i18n="discover_more">גלו עוד</span>
+                            <i class="fa-solid fa-arrow-left text-xs" data-i18n-arrow></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="trinity-detail" class="mt-10 bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-500" style="max-height: 0; opacity: 0; overflow: hidden;">
+                <div id="trinity-detail-content" class="p-8 md:p-10"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SMART LOGISTICS -->
+    <section id="logistics" class="py-20 bg-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block text-dubai-teal text-sm font-bold uppercase tracking-[0.2em] mb-3" data-i18n="logistics_label">Plan Smart</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold text-dubai-deep-blue" data-i18n="logistics_title">לוגיסטיקה ותכנון חכם</h2>
+                <p class="text-gray-500 mt-3 max-w-xl mx-auto" data-i18n="logistics_sub">מחירים רשמיים, דרכי הגעה ועלויות — כל מה שצריך כדי לתכנן בלי הפתעות.</p>
+            </div>
+
+            <h3 class="text-xl font-display font-bold text-dubai-deep-blue mb-6 flex items-center gap-3">
+                <div class="w-8 h-8 bg-dubai-teal/10 rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-plane-departure text-dubai-teal text-sm"></i>
+                </div>
+                <span data-i18n="logistics_getting_there">איך מגיעים לדובאי?</span>
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+                <div class="bg-dubai-sand rounded-2xl p-6 border-r-4 border-dubai-teal" data-i18n-html="flight_card">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-dubai-teal rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-plane text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-dubai-deep-blue">טיסה ישירה לדובאי</h4>
+                            <span class="text-xs text-gray-500">נמל התעופה DXB — הגדול בעולם</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-dubai-teal w-5"></i>
+                            <span>מישראל: כ-3.5 שעות | FlyDubai, Wizz Air, אל-על</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-tag text-dubai-teal w-5"></i>
+                            <span>מחיר: <strong>$200 — $600</strong> הלוך-חזור</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-route text-dubai-teal w-5"></i>
+                            <span>גם Emirates, Etihad ו-Qatar Airways מאירופה</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-dubai-sand rounded-2xl p-6 border-r-4 border-dubai-sunset" data-i18n-html="intercity_card">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-dubai-sunset rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-train text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-dubai-deep-blue">דובאי ↔ אבו דאבי</h4>
+                            <span class="text-xs text-gray-500">Etihad Rail + אוטובוס E100/E101</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-dubai-sunset w-5"></i>
+                            <span>Etihad Rail: <strong>57 דקות</strong> ב-200 קמ"ש (2026)</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-tag text-dubai-sunset w-5"></i>
+                            <span>אוטובוס: <strong>25 AED</strong> | ~2 שעות | כל 20 דקות</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-info text-dubai-sunset w-5"></i>
+                            <span>Yas Island Express — שאטל חינם מתחנת אבו דאבי</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-display font-bold text-dubai-deep-blue mb-6 flex items-center gap-3">
+                <div class="w-8 h-8 bg-dubai-teal/10 rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-train-subway text-dubai-teal text-sm"></i>
+                </div>
+                <span data-i18n="logistics_transport_title">עלויות התניידות יומיות</span>
+            </h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                <div class="bg-dubai-sand rounded-2xl p-6">
+                    <div class="chart-container">
+                        <canvas id="transportChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-sm bg-dubai-teal/10 p-4 rounded-xl text-dubai-deep-blue flex items-start gap-2">
+                        <i class="fa-solid fa-lightbulb text-dubai-orange mt-0.5"></i>
+                        <span data-i18n-html="transport_tip"><strong>טיפ:</strong> כרטיס Nol Silver (25 AED) חובה למטרו. מטרו + טראם מכסה את רוב האטרקציות. Careem/Uber זמינים תמיד.</span>
+                    </div>
+                </div>
+
+                <div id="transport-info" class="space-y-4" data-i18n-html="transport_info">
+                    <div class="bg-dubai-sand rounded-xl p-5 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-dubai-earth/20 rounded-xl flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-train-subway text-dubai-earth text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-dubai-deep-blue">מטרו דובאי</h4>
+                            <p class="text-sm text-gray-500">קו אדום + ירוק | <strong>3-7.5 AED</strong> לנסיעה | Nol Silver: 25 AED</p>
+                        </div>
+                    </div>
+                    <div class="bg-dubai-sand rounded-xl p-5 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-dubai-teal/10 rounded-xl flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-taxi text-dubai-teal text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-dubai-deep-blue">מונית / Careem / Uber</h4>
+                            <p class="text-sm text-gray-500">תעריף פתיחה: <strong>5-12 AED</strong> | Careem Bike: 20 AED/יום</p>
+                        </div>
+                    </div>
+                    <div class="bg-dubai-sand rounded-xl p-5 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-dubai-sunset/20 rounded-xl flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-bus text-dubai-sunset text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-dubai-deep-blue">אוטובוס בין-עירוני</h4>
+                            <p class="text-sm text-gray-500">דובאי ↔ אבו דאבי: <strong>25 AED</strong> | E100/E101 כל 20 דקות</p>
+                        </div>
+                    </div>
+                    <div class="bg-dubai-sand rounded-xl p-5 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-dubai-deep-blue/10 rounded-xl flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-car text-dubai-deep-blue text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-dubai-deep-blue">השכרת רכב</h4>
+                            <p class="text-sm text-gray-500"><strong>120-250 AED</strong>/יום | Salik (אגרת כביש): 4-6 AED לשער</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-display font-bold text-dubai-deep-blue mb-6 flex items-center gap-3">
+                <div class="w-8 h-8 bg-dubai-teal/10 rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-ticket text-dubai-teal text-sm"></i>
+                </div>
+                <span data-i18n="fees_title">דמי כניסה לאטרקציות (2026)</span>
+            </h3>
+            <div class="bg-dubai-sand rounded-2xl overflow-hidden shadow-sm">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="bg-dubai-deep-blue text-white">
+                                <th class="py-4 px-6 text-right font-bold" data-i18n="fees_col_attraction">אטרקציה</th>
+                                <th class="py-4 px-6 text-right font-bold" data-i18n="fees_col_cost">עלות (AED)</th>
+                                <th class="py-4 px-6 text-right font-bold hidden sm:table-cell" data-i18n="fees_col_notes">הערות</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fees-tbody" class="divide-y divide-white/50" data-i18n-html="fees_tbody">
+                            <tr class="bg-white/60 hover:bg-white transition">
+                                <td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-building text-dubai-earth"></i>Burj Khalifa — At the Top</div></td>
+                                <td class="py-4 px-6"><span class="bg-dubai-teal/10 text-dubai-teal font-bold px-3 py-1 rounded-full">169-769 AED</span></td>
+                                <td class="py-4 px-6 text-gray-500 hidden sm:table-cell">קומה 124+125 (169) | SKY 148 (769). הזמנה מראש!</td>
+                            </tr>
+                            <tr class="bg-white/30 hover:bg-white transition">
+                                <td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-atom text-dubai-earth"></i>Museum of the Future</div></td>
+                                <td class="py-4 px-6"><span class="bg-dubai-teal/10 text-dubai-teal font-bold px-3 py-1 rounded-full">169-399 AED</span></td>
+                                <td class="py-4 px-6 text-gray-500 hidden sm:table-cell">כרטיס סטנדרטי 169 | VIP: 399. הכי מבוקש בדובאי</td>
+                            </tr>
+                            <tr class="bg-white/60 hover:bg-white transition">
+                                <td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-frame text-dubai-earth"></i>Dubai Frame</div></td>
+                                <td class="py-4 px-6"><span class="bg-dubai-teal/10 text-dubai-teal font-bold px-3 py-1 rounded-full">50 AED</span></td>
+                                <td class="py-4 px-6 text-gray-500 hidden sm:table-cell">רצפת זכוכית ב-150 מטר. נוף ל-Old & New Dubai</td>
+                            </tr>
+                            <tr class="bg-white/30 hover:bg-white transition">
+                                <td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-water text-dubai-earth"></i>Aquaventure Waterpark</div></td>
+                                <td class="py-4 px-6"><span class="bg-dubai-sunset/20 text-dubai-sunset font-bold px-3 py-1 rounded-full">320-345 AED</span></td>
+                                <td class="py-4 px-6 text-gray-500 hidden sm:table-cell">פארק המים הגדול ביותר בעולם. Palm Jumeirah</td>
+                            </tr>
+                            <tr class="bg-white/60 hover:bg-white transition">
+                                <td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-palette text-dubai-earth"></i>Louvre Abu Dhabi</div></td>
+                                <td class="py-4 px-6"><span class="bg-dubai-teal/10 text-dubai-teal font-bold px-3 py-1 rounded-full">63 AED</span></td>
+                                <td class="py-4 px-6 text-gray-500 hidden sm:table-cell">ז'אן נובל. אוסף מ-12,000 שנות אמנות. סאדיאת</td>
+                            </tr>
+                            <tr class="bg-white/30 hover:bg-white transition">
+                                <td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-flag-checkered text-dubai-earth"></i>Ferrari World Abu Dhabi</div></td>
+                                <td class="py-4 px-6"><span class="bg-dubai-sunset/20 text-dubai-sunset font-bold px-3 py-1 rounded-full">Multi-Park 475/2</span></td>
+                                <td class="py-4 px-6 text-gray-500 hidden sm:table-cell">Formula Rossa (240 קמ"ש). Yas Island</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="px-6 py-4 bg-white/40 border-t border-white/50 text-xs text-gray-400 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span data-i18n="fees_note">מחירים מעודכנים לשנת 2026. הזמנה מראש אונליין מומלצת לחסוך 10-20% ולמנוע תורים.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CURATED ITINERARIES -->
+    <section id="itineraries" class="py-20 bg-dubai-sand">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="inline-block text-dubai-teal text-sm font-bold uppercase tracking-[0.2em] mb-3" data-i18n="itin_label">Your Trip Blueprint</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold text-dubai-deep-blue" data-i18n="itin_title">מסלולים מומלצים</h2>
+                <p class="text-gray-500 mt-3 max-w-xl mx-auto" data-i18n="itin_sub">תוכניות טיול מוכנות שנבנו על בסיס לוגיקה גיאוגרפית ונתונים מהשטח.</p>
+            </div>
+
+            <div class="flex justify-center gap-4 mb-10">
+                <button onclick="showItinerary(0)" id="itin-tab-0" class="itin-tab bg-dubai-deep-blue text-white font-bold py-3 px-8 rounded-full shadow-md transition-all duration-300 hover:shadow-lg" data-i18n-html="itin_tab_0">
+                    <i class="fa-solid fa-bolt ml-1"></i>
+                    3 ימים | דובאי קלאסיק
+                </button>
+                <button onclick="showItinerary(1)" id="itin-tab-1" class="itin-tab bg-white text-gray-500 border border-gray-200 font-bold py-3 px-8 rounded-full transition-all duration-300 hover:border-dubai-deep-blue hover:text-dubai-deep-blue" data-i18n-html="itin_tab_1">
+                    <i class="fa-solid fa-compass ml-1"></i>
+                    5 ימים | דובאי + אבו דאבי
+                </button>
+            </div>
+
+            <div class="max-w-3xl mx-auto">
+                <div id="itin-header" class="bg-white rounded-2xl shadow-sm p-6 md:p-8 mb-8 border-r-4 border-dubai-teal"></div>
+                <div id="itin-timeline" class="relative pr-8"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block text-dubai-teal text-sm font-bold uppercase tracking-[0.2em] mb-3" data-i18n="gallery_label">Through The Lens</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold text-dubai-deep-blue" data-i18n="gallery_title">גלריה</h2>
+                <p class="text-gray-500 mt-3 max-w-xl mx-auto" data-i18n="gallery_sub">תמונות מהשטח — ממגדלי-על ועד מסגדים מרהיבים.</p>
+            </div>
+            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <button onclick="closeLightbox(event, true)" class="absolute top-6 right-6 text-white/70 hover:text-white text-3xl transition z-10" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="">
+        <p id="lightbox-caption" class="text-white/90 text-lg font-display font-bold tracking-wide"></p>
+    </div>
+
+    <!-- FOOTER — ESSENTIALS & CREDITS -->
+    <footer id="essentials" class="bg-dubai-deep-blue text-white">
+        <div class="py-16 border-b border-white/10">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="inline-block text-dubai-teal text-sm font-bold uppercase tracking-[0.2em] mb-3" data-i18n="footer_label">Before You Fly</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold" data-i18n="footer_title">אל תשכחו לפני הטיסה</h2>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 text-center hover:bg-white/10 transition">
+                        <div class="w-14 h-14 mx-auto bg-dubai-teal/20 rounded-xl flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-id-card text-dubai-teal text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-sm mb-1" data-i18n="check_visa_t">ויזה / ICP</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed" data-i18n="check_visa_d">ישראלים: ויזה אלקטרונית מראש. אירופאים: 30 יום חינם.</p>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 text-center hover:bg-white/10 transition">
+                        <div class="w-14 h-14 mx-auto bg-dubai-sunset/20 rounded-xl flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-sun text-dubai-sunset text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-sm mb-1" data-i18n="check_heat_t">קרם הגנה</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed" data-i18n="check_heat_d">SPF 50+ חובה. טמפרטורות 40°C+ בקיץ. שתו 3+ ליטר ביום.</p>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 text-center hover:bg-white/10 transition">
+                        <div class="w-14 h-14 mx-auto bg-dubai-teal/20 rounded-xl flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-credit-card text-dubai-teal text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-sm mb-1" data-i18n="check_nol_t">כרטיס Nol</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed" data-i18n="check_nol_d">Silver 25 AED. למטרו, טראם ואוטובוסים. נמכר בכל תחנה.</p>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 text-center hover:bg-white/10 transition">
+                        <div class="w-14 h-14 mx-auto bg-white/10 rounded-xl flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-shirt text-white text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-sm mb-1" data-i18n="check_dress_t">לבוש צנוע</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed" data-i18n="check_dress_d">מסגדים וקניונים: כיסוי כתפיים וברכיים. חופים: בגד ים OK.</p>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 text-center hover:bg-white/10 transition col-span-2 md:col-span-1">
+                        <div class="w-14 h-14 mx-auto bg-dubai-orange/20 rounded-xl flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-mobile-screen text-dubai-orange text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-sm mb-1" data-i18n="check_app_t">אפליקציות</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed" data-i18n="check_app_d">Careem (מוניות), Talabat (אוכל), RTA Dubai (תחבורה).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-12 border-b border-white/10">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-red-500/10 border border-red-500/20 rounded-2xl p-6 flex items-start gap-4">
+                        <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-temperature-high text-red-400 text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-red-300 mb-1"><span data-i18n="warn_heat_t">אזהרת חום</span></h4>
+                            <p class="text-sm text-gray-300 leading-relaxed" data-i18n-html="warn_heat_d">
+                                בין יוני-ספטמבר הטמפרטורות מגיעות ל-<strong class="text-red-300">48°C+</strong>. הימנעו מפעילויות חיצוניות בשעות 11:00-16:00. רמדאן 2026: 18 בפברואר - 19 במרץ — מסעדות פתוחות לתיירים אך שתייה ואכילה ברחוב אסורים.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-orange-500/10 border border-orange-500/20 rounded-2xl p-6 flex items-start gap-4">
+                        <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-scale-balanced text-orange-400 text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-orange-300 mb-1"><span data-i18n="warn_law_t">חוקים מקומיים</span></h4>
+                            <p class="text-sm text-gray-300 leading-relaxed" data-i18n-html="warn_law_d">
+                                צילום אנשים <strong class="text-orange-300">ללא רשות אסור</strong>. אלכוהול: רק בברים ובמסעדות מורשות. שתיית אלכוהול ברחוב: קנס כבד. קוד לבוש נדרש בקניונים ובמקומות ציבוריים.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-12 border-b border-white/10">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-dubai-teal/20 rounded-xl flex items-center justify-center">
+                                <i class="fa-solid fa-certificate text-dubai-teal text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-dubai-teal">Dubai Tourism Quality Seal</h4>
+                                <span class="text-xs text-gray-400" data-i18n="ubi_subtitle">תו האיכות של דובאי 2026</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-300 leading-relaxed" data-i18n-html="ubi_text">
+                            אנו מקדמים עסקים בעלי תו ה-<strong class="text-white">DTCM Quality Seal</strong> — תקן האיכות של רשות התיירות של דובאי. התו מבטיח מחירים הוגנים, שירות מקצועי ותקני בטיחות גבוהים.
+                        </p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-dubai-orange/20 rounded-xl flex items-center justify-center">
+                                <i class="fa-solid fa-heart text-dubai-orange text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-dubai-orange" data-i18n="ethics_title">תיירות אחראית</h4>
+                                <span class="text-xs text-gray-400" data-i18n="ethics_subtitle">כבדו את התרבות המקומית</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-300 leading-relaxed" data-i18n-html="ethics_text">
+                            כבדו את התרבות האמירתית. <strong class="text-white">הימנעו מצילום ללא רשות</strong>, לבשו בגדים צנועים במקומות קדושים, והשתמשו בספארי מדבר אתיים שאינם פוגעים בסביבה הטבעית.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-8">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-right">
+                    <div class="flex items-center gap-2 text-lg font-display font-bold">
+                        <i class="fa-solid fa-mosque text-dubai-teal"></i>
+                        Dubai<span class="text-dubai-teal">Insider</span>
+                    </div>
+                    <div class="text-xs text-gray-500 max-w-lg leading-relaxed">
+                        <p data-i18n="credits_sources">מבוסס על מחקר עומק 2025-2026. מקורות: DTCM, DCT Abu Dhabi, Etihad Rail, RTA Dubai.</p>
+                        <p class="mt-1" data-i18n="credits_affiliate">חלק מהקישורים באתר הם שותפויות (Affiliate Links). הדבר אינו משפיע על ההמלצות או המחירים המוצגים.</p>
+                    </div>
+                    <span class="text-xs text-gray-600">© 2026 Dubai & Abu Dhabi Insider</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // =============================================
+        // LANGUAGE STATE
+        // =============================================
+        let currentLang = localStorage.getItem('dubai-lang') || 'he';
+
+        // =============================================
+        // TRANSLATIONS
+        // =============================================
+        const T = {
+            nav_trinity:    { he: 'שלושת המוקדים', en: 'The Trinity' },
+            nav_logistics:  { he: 'לוגיסטיקה', en: 'Logistics' },
+            nav_itineraries:{ he: 'מסלולים', en: 'Itineraries' },
+            nav_gallery:    { he: 'גלריה', en: 'Gallery' },
+            nav_essentials: { he: 'חובה לדעת', en: 'Essentials' },
+            nav_cta:        { he: 'תכננו את הטיול', en: 'Plan Your Trip' },
+
+            hero_badge: { he: 'יעד תיירות #1 במזרח התיכון 2026 — 20M+ מבקרים בשנה', en: '#1 Tourism Destination in the Middle East 2026 — 20M+ Visitors/Year' },
+            hero_title: { he: 'גלו את<br><span class="text-dubai-teal">דובאי ואבו דאבי</span> 2026', en: 'Discover<br><span class="text-dubai-teal">Dubai & Abu Dhabi</span> 2026' },
+            hero_sub:   { he: 'יוקרה אולטרא פוגשת מדבר עתיק. אדריכלות עתידנית, אוצרות תרבות ופארקי שעשועים מהחלומות.<br class="hidden md:block">המדריך המלא לאמירויות 2026.', en: 'Ultra-luxury meets ancient desert. Futuristic architecture, cultural treasures and dream theme parks.<br class="hidden md:block">The complete UAE guide for 2026.' },
+            hero_cta1:  { he: '<i class="fa-solid fa-route ml-2"></i> תכננו את הטיול', en: '<i class="fa-solid fa-route mr-2"></i> Plan Your Trip' },
+            hero_cta2:  { he: 'גלו את האמירויות <i class="fa-solid fa-arrow-down mr-2"></i>', en: 'Explore the Emirates <i class="fa-solid fa-arrow-down ml-2"></i>' },
+            stat_tourists: { he: 'מבקרים בשנה', en: 'Visitors / Year' },
+            stat_burj:     { he: 'בורג׳ ח׳ליפה', en: 'Burj Khalifa' },
+            stat_temp:     { he: 'ממוצע שנתי', en: 'Avg. Year-Round' },
+
+            trinity_label: { he: 'Explore The Emirates', en: 'Explore The Emirates' },
+            trinity_title: { he: 'שלושת המוקדים של האמירויות', en: 'The Three Hubs of the Emirates' },
+            trinity_sub:   { he: 'כל אזור מציע עולם שלם. בחרו את המוקד שלכם — או שלבו בין כולם.', en: 'Each region offers a world of its own. Pick your base — or combine them all.' },
+            discover_more: { he: 'גלו עוד', en: 'Discover More' },
+            where_to_stay: { he: 'איפה ישנים?', en: 'Where to Stay?' },
+
+            card_coast_body: {
+                he: '<h3 class="font-bold text-lg text-dubai-deep-blue mb-1">מרינה, JBR ופאלם ג\'ומיירה</h3><p class="text-sm text-gray-500 mb-4">קו חוף יוקרתי, מגדלים מרהיבים ופארקי מים מהחלומות.</p><ul class="space-y-2 text-sm text-gray-600"><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-teal mt-0.5"></i><span>Aquaventure Waterpark — 320-345 AED</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-teal mt-0.5"></i><span>Dubai Marina Walk — טיילת בין מגדלי-על</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-teal mt-0.5"></i><span>JBR Beach — חוף חופשי עם מסעדות מול הים</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-teal mt-0.5"></i><span>Ain Dubai — גלגל הענק הגבוה בעולם (250m)</span></li></ul><div class="mt-5 text-dubai-teal font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"><span>גלו עוד</span><i class="fa-solid fa-arrow-left text-xs"></i></div>',
+                en: '<h3 class="font-bold text-lg text-dubai-deep-blue mb-1">Marina, JBR & Palm Jumeirah</h3><p class="text-sm text-gray-500 mb-4">Luxury coastline, stunning towers and world-class waterparks.</p><ul class="space-y-2 text-sm text-gray-600"><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-teal mt-0.5"></i><span>Aquaventure Waterpark — 320-345 AED</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-teal mt-0.5"></i><span>Dubai Marina Walk — Promenade among supertalls</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-teal mt-0.5"></i><span>JBR Beach — Free beach with beachfront dining</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-teal mt-0.5"></i><span>Ain Dubai — World\'s tallest observation wheel (250m)</span></li></ul><div class="mt-5 text-dubai-teal font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"><span>Discover More</span><i class="fa-solid fa-arrow-right text-xs"></i></div>'
+            },
+            card_downtown_body: {
+                he: '<h3 class="font-bold text-lg text-dubai-deep-blue mb-1">דאונטאון, דובאי העתיקה ודיירה</h3><p class="text-sm text-gray-500 mb-4">בורג\' ח\'ליפה, מוזיאון העתיד, השוק הזהב ועולם התרבות.</p><ul class="space-y-2 text-sm text-gray-600"><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-deep-blue mt-0.5"></i><span>Burj Khalifa — At the Top: 169-769 AED</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-deep-blue mt-0.5"></i><span>Museum of the Future — 169-399 AED</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-deep-blue mt-0.5"></i><span>Dubai Frame — תצפית פנורמית, 50 AED</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-deep-blue mt-0.5"></i><span>Gold & Spice Souks — שווקים מסורתיים בדיירה</span></li></ul><div class="mt-5 text-dubai-deep-blue font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"><span>גלו עוד</span><i class="fa-solid fa-arrow-left text-xs"></i></div>',
+                en: '<h3 class="font-bold text-lg text-dubai-deep-blue mb-1">Downtown, Old Dubai & Deira</h3><p class="text-sm text-gray-500 mb-4">Burj Khalifa, Museum of the Future, Gold Souk and cultural heritage.</p><ul class="space-y-2 text-sm text-gray-600"><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-deep-blue mt-0.5"></i><span>Burj Khalifa — At the Top: 169-769 AED</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-deep-blue mt-0.5"></i><span>Museum of the Future — 169-399 AED</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-deep-blue mt-0.5"></i><span>Dubai Frame — Panoramic views, 50 AED</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-deep-blue mt-0.5"></i><span>Gold & Spice Souks — Traditional markets in Deira</span></li></ul><div class="mt-5 text-dubai-deep-blue font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"><span>Discover More</span><i class="fa-solid fa-arrow-right text-xs"></i></div>'
+            },
+            card_abudhabi_body: {
+                he: '<h3 class="font-bold text-lg text-dubai-deep-blue mb-1">תרבות, הרפתקאות ואיים</h3><p class="text-sm text-gray-500 mb-4">לובר, פרארי וורלד, מסגד שייח\' זאיד ואי יאס.</p><ul class="space-y-2 text-sm text-gray-600"><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-sunset mt-0.5"></i><span>Louvre Abu Dhabi — 63 AED, אדריכלות ז\'אן נובל</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-sunset mt-0.5"></i><span>Ferrari World — רכבת ההרים המהירה בעולם</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-sunset mt-0.5"></i><span>Yas Island — 4 פארקים, Multi-Park 475 AED/2</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-sunset mt-0.5"></i><span>Qasr Al Watan — הארמון הנשיאותי, 65 AED</span></li></ul><div class="mt-5 text-dubai-sunset font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"><span>גלו עוד</span><i class="fa-solid fa-arrow-left text-xs"></i></div>',
+                en: '<h3 class="font-bold text-lg text-dubai-deep-blue mb-1">Culture, Adventure & Islands</h3><p class="text-sm text-gray-500 mb-4">Louvre, Ferrari World, Sheikh Zayed Mosque and Yas Island.</p><ul class="space-y-2 text-sm text-gray-600"><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-sunset mt-0.5"></i><span>Louvre Abu Dhabi — 63 AED, Jean Nouvel architecture</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-sunset mt-0.5"></i><span>Ferrari World — World\'s fastest roller coaster</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-sunset mt-0.5"></i><span>Yas Island — 4 parks, Multi-Park 475 AED/2</span></li><li class="flex items-start gap-2"><i class="fa-solid fa-check text-dubai-sunset mt-0.5"></i><span>Qasr Al Watan — Presidential Palace, 65 AED</span></li></ul><div class="mt-5 text-dubai-sunset font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"><span>Discover More</span><i class="fa-solid fa-arrow-right text-xs"></i></div>'
+            },
+
+            logistics_label: { he: 'Plan Smart', en: 'Plan Smart' },
+            logistics_title: { he: 'לוגיסטיקה ותכנון חכם', en: 'Smart Logistics & Planning' },
+            logistics_sub:   { he: 'מחירים רשמיים, דרכי הגעה ועלויות — כל מה שצריך כדי לתכנן בלי הפתעות.', en: 'Official prices, routes and costs — everything you need to plan without surprises.' },
+            logistics_getting_there: { he: 'איך מגיעים לדובאי?', en: 'How to Get to Dubai?' },
+            flight_card: {
+                he: '<div class="flex items-center gap-3 mb-4"><div class="w-12 h-12 bg-dubai-teal rounded-xl flex items-center justify-center"><i class="fa-solid fa-plane text-white text-lg"></i></div><div><h4 class="font-bold text-lg text-dubai-deep-blue">טיסה ישירה לדובאי</h4><span class="text-xs text-gray-500">נמל התעופה DXB — הגדול בעולם</span></div></div><ul class="space-y-3 text-sm text-gray-600"><li class="flex items-center gap-2"><i class="fa-solid fa-clock text-dubai-teal w-5"></i><span>מישראל: כ-3.5 שעות | FlyDubai, Wizz Air, אל-על</span></li><li class="flex items-center gap-2"><i class="fa-solid fa-tag text-dubai-teal w-5"></i><span>מחיר: <strong>$200 — $600</strong> הלוך-חזור</span></li><li class="flex items-center gap-2"><i class="fa-solid fa-route text-dubai-teal w-5"></i><span>גם Emirates, Etihad ו-Qatar Airways מאירופה</span></li></ul>',
+                en: '<div class="flex items-center gap-3 mb-4"><div class="w-12 h-12 bg-dubai-teal rounded-xl flex items-center justify-center"><i class="fa-solid fa-plane text-white text-lg"></i></div><div><h4 class="font-bold text-lg text-dubai-deep-blue">Direct Flight to Dubai</h4><span class="text-xs text-gray-500">DXB Airport — World\'s Busiest</span></div></div><ul class="space-y-3 text-sm text-gray-600"><li class="flex items-center gap-2"><i class="fa-solid fa-clock text-dubai-teal w-5"></i><span>From Israel: ~3.5 hours | FlyDubai, Wizz Air, El Al</span></li><li class="flex items-center gap-2"><i class="fa-solid fa-tag text-dubai-teal w-5"></i><span>Price: <strong>$200 — $600</strong> round trip</span></li><li class="flex items-center gap-2"><i class="fa-solid fa-route text-dubai-teal w-5"></i><span>Also Emirates, Etihad & Qatar Airways from Europe</span></li></ul>'
+            },
+            intercity_card: {
+                he: '<div class="flex items-center gap-3 mb-4"><div class="w-12 h-12 bg-dubai-sunset rounded-xl flex items-center justify-center"><i class="fa-solid fa-train text-white text-lg"></i></div><div><h4 class="font-bold text-lg text-dubai-deep-blue">דובאי ↔ אבו דאבי</h4><span class="text-xs text-gray-500">Etihad Rail + אוטובוס E100/E101</span></div></div><ul class="space-y-3 text-sm text-gray-600"><li class="flex items-center gap-2"><i class="fa-solid fa-clock text-dubai-sunset w-5"></i><span>Etihad Rail: <strong>57 דקות</strong> ב-200 קמ"ש (2026)</span></li><li class="flex items-center gap-2"><i class="fa-solid fa-tag text-dubai-sunset w-5"></i><span>אוטובוס: <strong>25 AED</strong> | ~2 שעות | כל 20 דקות</span></li><li class="flex items-center gap-2"><i class="fa-solid fa-circle-info text-dubai-sunset w-5"></i><span>Yas Island Express — שאטל חינם מתחנת אבו דאבי</span></li></ul>',
+                en: '<div class="flex items-center gap-3 mb-4"><div class="w-12 h-12 bg-dubai-sunset rounded-xl flex items-center justify-center"><i class="fa-solid fa-train text-white text-lg"></i></div><div><h4 class="font-bold text-lg text-dubai-deep-blue">Dubai ↔ Abu Dhabi</h4><span class="text-xs text-gray-500">Etihad Rail + Bus E100/E101</span></div></div><ul class="space-y-3 text-sm text-gray-600"><li class="flex items-center gap-2"><i class="fa-solid fa-clock text-dubai-sunset w-5"></i><span>Etihad Rail: <strong>57 minutes</strong> at 200 km/h (2026)</span></li><li class="flex items-center gap-2"><i class="fa-solid fa-tag text-dubai-sunset w-5"></i><span>Bus: <strong>25 AED</strong> | ~2 hours | Every 20 min</span></li><li class="flex items-center gap-2"><i class="fa-solid fa-circle-info text-dubai-sunset w-5"></i><span>Yas Island Express — Free shuttle from Abu Dhabi station</span></li></ul>'
+            },
+            logistics_transport_title: { he: 'עלויות התניידות יומיות', en: 'Daily Transport Costs' },
+            transport_tip: { he: '<strong>טיפ:</strong> כרטיס Nol Silver (25 AED) חובה למטרו. מטרו + טראם מכסה את רוב האטרקציות. Careem/Uber זמינים תמיד.', en: '<strong>Tip:</strong> Nol Silver card (25 AED) is a must for the metro. Metro + Tram covers most attractions. Careem/Uber always available.' },
+            transport_info: {
+                he: '<div class="bg-dubai-sand rounded-xl p-5 flex items-center gap-4"><div class="w-12 h-12 bg-dubai-earth/20 rounded-xl flex items-center justify-center shrink-0"><i class="fa-solid fa-train-subway text-dubai-earth text-lg"></i></div><div><h4 class="font-bold text-dubai-deep-blue">מטרו דובאי</h4><p class="text-sm text-gray-500">קו אדום + ירוק | <strong>3-7.5 AED</strong> לנסיעה | Nol Silver: 25 AED</p></div></div><div class="bg-dubai-sand rounded-xl p-5 flex items-center gap-4"><div class="w-12 h-12 bg-dubai-teal/10 rounded-xl flex items-center justify-center shrink-0"><i class="fa-solid fa-taxi text-dubai-teal text-lg"></i></div><div><h4 class="font-bold text-dubai-deep-blue">מונית / Careem / Uber</h4><p class="text-sm text-gray-500">תעריף פתיחה: <strong>5-12 AED</strong> | Careem Bike: 20 AED/יום</p></div></div><div class="bg-dubai-sand rounded-xl p-5 flex items-center gap-4"><div class="w-12 h-12 bg-dubai-sunset/20 rounded-xl flex items-center justify-center shrink-0"><i class="fa-solid fa-bus text-dubai-sunset text-lg"></i></div><div><h4 class="font-bold text-dubai-deep-blue">אוטובוס בין-עירוני</h4><p class="text-sm text-gray-500">דובאי ↔ אבו דאבי: <strong>25 AED</strong> | E100/E101 כל 20 דקות</p></div></div><div class="bg-dubai-sand rounded-xl p-5 flex items-center gap-4"><div class="w-12 h-12 bg-dubai-deep-blue/10 rounded-xl flex items-center justify-center shrink-0"><i class="fa-solid fa-car text-dubai-deep-blue text-lg"></i></div><div><h4 class="font-bold text-dubai-deep-blue">השכרת רכב</h4><p class="text-sm text-gray-500"><strong>120-250 AED</strong>/יום | Salik (אגרת כביש): 4-6 AED לשער</p></div></div>',
+                en: '<div class="bg-dubai-sand rounded-xl p-5 flex items-center gap-4"><div class="w-12 h-12 bg-dubai-earth/20 rounded-xl flex items-center justify-center shrink-0"><i class="fa-solid fa-train-subway text-dubai-earth text-lg"></i></div><div><h4 class="font-bold text-dubai-deep-blue">Dubai Metro</h4><p class="text-sm text-gray-500">Red + Green Line | <strong>3-7.5 AED</strong> per ride | Nol Silver: 25 AED</p></div></div><div class="bg-dubai-sand rounded-xl p-5 flex items-center gap-4"><div class="w-12 h-12 bg-dubai-teal/10 rounded-xl flex items-center justify-center shrink-0"><i class="fa-solid fa-taxi text-dubai-teal text-lg"></i></div><div><h4 class="font-bold text-dubai-deep-blue">Taxi / Careem / Uber</h4><p class="text-sm text-gray-500">Base fare: <strong>5-12 AED</strong> | Careem Bike: 20 AED/day</p></div></div><div class="bg-dubai-sand rounded-xl p-5 flex items-center gap-4"><div class="w-12 h-12 bg-dubai-sunset/20 rounded-xl flex items-center justify-center shrink-0"><i class="fa-solid fa-bus text-dubai-sunset text-lg"></i></div><div><h4 class="font-bold text-dubai-deep-blue">Intercity Bus</h4><p class="text-sm text-gray-500">Dubai ↔ Abu Dhabi: <strong>25 AED</strong> | E100/E101 every 20 min</p></div></div><div class="bg-dubai-sand rounded-xl p-5 flex items-center gap-4"><div class="w-12 h-12 bg-dubai-deep-blue/10 rounded-xl flex items-center justify-center shrink-0"><i class="fa-solid fa-car text-dubai-deep-blue text-lg"></i></div><div><h4 class="font-bold text-dubai-deep-blue">Car Rental</h4><p class="text-sm text-gray-500"><strong>120-250 AED</strong>/day | Salik (road toll): 4-6 AED per gate</p></div></div>'
+            },
+
+            fees_title: { he: 'דמי כניסה לאטרקציות (2026)', en: 'Attraction Entry Fees (2026)' },
+            fees_col_attraction: { he: 'אטרקציה', en: 'Attraction' },
+            fees_col_cost: { he: 'עלות (AED)', en: 'Cost (AED)' },
+            fees_col_notes: { he: 'הערות', en: 'Notes' },
+            fees_tbody: {
+                he: '<tr class="bg-white/60 hover:bg-white transition"><td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-building text-dubai-earth"></i>Burj Khalifa — At the Top</div></td><td class="py-4 px-6"><span class="bg-dubai-teal/10 text-dubai-teal font-bold px-3 py-1 rounded-full">169-769 AED</span></td><td class="py-4 px-6 text-gray-500 hidden sm:table-cell">קומה 124+125 (169) | SKY 148 (769). הזמנה מראש!</td></tr><tr class="bg-white/30 hover:bg-white transition"><td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-atom text-dubai-earth"></i>Museum of the Future</div></td><td class="py-4 px-6"><span class="bg-dubai-teal/10 text-dubai-teal font-bold px-3 py-1 rounded-full">169-399 AED</span></td><td class="py-4 px-6 text-gray-500 hidden sm:table-cell">סטנדרטי 169 | VIP: 399. הכי מבוקש בדובאי</td></tr><tr class="bg-white/60 hover:bg-white transition"><td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-expand text-dubai-earth"></i>Dubai Frame</div></td><td class="py-4 px-6"><span class="bg-dubai-teal/10 text-dubai-teal font-bold px-3 py-1 rounded-full">50 AED</span></td><td class="py-4 px-6 text-gray-500 hidden sm:table-cell">רצפת זכוכית ב-150 מטר. נוף ל-Old & New Dubai</td></tr><tr class="bg-white/30 hover:bg-white transition"><td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-water text-dubai-earth"></i>Aquaventure Waterpark</div></td><td class="py-4 px-6"><span class="bg-dubai-sunset/20 text-dubai-sunset font-bold px-3 py-1 rounded-full">320-345 AED</span></td><td class="py-4 px-6 text-gray-500 hidden sm:table-cell">פארק המים הגדול בעולם. Palm Jumeirah</td></tr><tr class="bg-white/60 hover:bg-white transition"><td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-palette text-dubai-earth"></i>Louvre Abu Dhabi</div></td><td class="py-4 px-6"><span class="bg-dubai-teal/10 text-dubai-teal font-bold px-3 py-1 rounded-full">63 AED</span></td><td class="py-4 px-6 text-gray-500 hidden sm:table-cell">ז\'אן נובל. 12,000 שנות אמנות. סאדיאת</td></tr><tr class="bg-white/30 hover:bg-white transition"><td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-flag-checkered text-dubai-earth"></i>Ferrari World Abu Dhabi</div></td><td class="py-4 px-6"><span class="bg-dubai-sunset/20 text-dubai-sunset font-bold px-3 py-1 rounded-full">Multi-Park 475/2</span></td><td class="py-4 px-6 text-gray-500 hidden sm:table-cell">Formula Rossa (240 קמ"ש). Yas Island</td></tr>',
+                en: '<tr class="bg-white/60 hover:bg-white transition"><td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-building text-dubai-earth"></i>Burj Khalifa — At the Top</div></td><td class="py-4 px-6"><span class="bg-dubai-teal/10 text-dubai-teal font-bold px-3 py-1 rounded-full">169-769 AED</span></td><td class="py-4 px-6 text-gray-500 hidden sm:table-cell">Level 124+125 (169) | SKY 148 (769). Book ahead!</td></tr><tr class="bg-white/30 hover:bg-white transition"><td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-atom text-dubai-earth"></i>Museum of the Future</div></td><td class="py-4 px-6"><span class="bg-dubai-teal/10 text-dubai-teal font-bold px-3 py-1 rounded-full">169-399 AED</span></td><td class="py-4 px-6 text-gray-500 hidden sm:table-cell">Standard 169 | VIP: 399. Most sought-after in Dubai</td></tr><tr class="bg-white/60 hover:bg-white transition"><td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-expand text-dubai-earth"></i>Dubai Frame</div></td><td class="py-4 px-6"><span class="bg-dubai-teal/10 text-dubai-teal font-bold px-3 py-1 rounded-full">50 AED</span></td><td class="py-4 px-6 text-gray-500 hidden sm:table-cell">Glass floor at 150m. Views of Old & New Dubai</td></tr><tr class="bg-white/30 hover:bg-white transition"><td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-water text-dubai-earth"></i>Aquaventure Waterpark</div></td><td class="py-4 px-6"><span class="bg-dubai-sunset/20 text-dubai-sunset font-bold px-3 py-1 rounded-full">320-345 AED</span></td><td class="py-4 px-6 text-gray-500 hidden sm:table-cell">World\'s largest waterpark. Palm Jumeirah</td></tr><tr class="bg-white/60 hover:bg-white transition"><td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-palette text-dubai-earth"></i>Louvre Abu Dhabi</div></td><td class="py-4 px-6"><span class="bg-dubai-teal/10 text-dubai-teal font-bold px-3 py-1 rounded-full">63 AED</span></td><td class="py-4 px-6 text-gray-500 hidden sm:table-cell">Jean Nouvel. 12,000 years of art. Saadiyat</td></tr><tr class="bg-white/30 hover:bg-white transition"><td class="py-4 px-6 font-medium text-dubai-deep-blue"><div class="flex items-center gap-2"><i class="fa-solid fa-flag-checkered text-dubai-earth"></i>Ferrari World Abu Dhabi</div></td><td class="py-4 px-6"><span class="bg-dubai-sunset/20 text-dubai-sunset font-bold px-3 py-1 rounded-full">Multi-Park 475/2</span></td><td class="py-4 px-6 text-gray-500 hidden sm:table-cell">Formula Rossa (240 km/h). Yas Island</td></tr>'
+            },
+            fees_note: { he: 'מחירים מעודכנים לשנת 2026. הזמנה מראש אונליין מומלצת לחסוך 10-20% ולמנוע תורים.', en: 'Prices updated for 2026. Online advance booking recommended to save 10-20% and skip queues.' },
+
+            itin_label: { he: 'Your Trip Blueprint', en: 'Your Trip Blueprint' },
+            itin_title: { he: 'מסלולים מומלצים', en: 'Recommended Itineraries' },
+            itin_sub:   { he: 'תוכניות טיול מוכנות שנבנו על בסיס לוגיקה גיאוגרפית ונתונים מהשטח.', en: 'Ready-made trip plans built on geographic logic and on-the-ground data.' },
+            itin_tab_0: { he: '<i class="fa-solid fa-bolt ml-1"></i> 3 ימים | דובאי קלאסיק', en: '<i class="fa-solid fa-bolt mr-1"></i> 3 Days | Dubai Classic' },
+            itin_tab_1: { he: '<i class="fa-solid fa-compass ml-1"></i> 5 ימים | דובאי + אבו דאבי', en: '<i class="fa-solid fa-compass mr-1"></i> 5 Days | Dubai + Abu Dhabi' },
+
+            footer_label: { he: 'Before You Fly', en: 'Before You Fly' },
+            footer_title: { he: 'אל תשכחו לפני הטיסה', en: "Don't Forget Before Your Flight" },
+            check_visa_t:  { he: 'ויזה / ICP', en: 'Visa / ICP' },
+            check_visa_d:  { he: 'ישראלים: ויזה אלקטרונית מראש. אירופאים: 30 יום חינם.', en: 'Israelis: e-visa required in advance. Europeans: 30 days visa-free.' },
+            check_heat_t:  { he: 'קרם הגנה', en: 'Sunscreen' },
+            check_heat_d:  { he: 'SPF 50+ חובה. טמפרטורות 40°C+ בקיץ. שתו 3+ ליטר ביום.', en: 'SPF 50+ essential. Temps reach 40°C+ in summer. Drink 3+ liters daily.' },
+            check_nol_t:   { he: 'כרטיס Nol', en: 'Nol Card' },
+            check_nol_d:   { he: 'Silver 25 AED. למטרו, טראם ואוטובוסים. נמכר בכל תחנה.', en: 'Silver 25 AED. For metro, tram and buses. Sold at every station.' },
+            check_dress_t: { he: 'לבוש צנוע', en: 'Modest Dress' },
+            check_dress_d: { he: 'מסגדים וקניונים: כיסוי כתפיים וברכיים. חופים: בגד ים OK.', en: 'Mosques & malls: cover shoulders & knees. Beaches: swimwear OK.' },
+            check_app_t:   { he: 'אפליקציות', en: 'Apps' },
+            check_app_d:   { he: 'Careem (מוניות), Talabat (אוכל), RTA Dubai (תחבורה).', en: 'Careem (taxis), Talabat (food), RTA Dubai (transport).' },
+            warn_heat_t: { he: 'אזהרת חום', en: 'Heat Warning' },
+            warn_heat_d: { he: 'בין יוני-ספטמבר הטמפרטורות מגיעות ל-<strong class="text-red-300">48°C+</strong>. הימנעו מפעילויות חיצוניות בשעות 11:00-16:00. רמדאן 2026: 18 בפברואר - 19 במרץ — מסעדות פתוחות לתיירים אך שתייה ואכילה ברחוב אסורים.', en: 'Between June-September temperatures reach <strong class="text-red-300">48°C+</strong>. Avoid outdoor activities between 11:00-16:00. Ramadan 2026: Feb 18 - Mar 19 — restaurants open for tourists but eating/drinking in public is prohibited.' },
+            warn_law_t: { he: 'חוקים מקומיים', en: 'Local Laws' },
+            warn_law_d: { he: 'צילום אנשים <strong class="text-orange-300">ללא רשות אסור</strong>. אלכוהול: רק בברים ובמסעדות מורשות. שתיית אלכוהול ברחוב: קנס כבד. קוד לבוש נדרש בקניונים ובמקומות ציבוריים.', en: 'Photographing people <strong class="text-orange-300">without permission is illegal</strong>. Alcohol: only in licensed bars and restaurants. Public drinking: heavy fines. Dress code required in malls and public places.' },
+            ubi_subtitle: { he: 'תו האיכות של דובאי 2026', en: "Dubai's 2026 Quality Seal" },
+            ubi_text: { he: 'אנו מקדמים עסקים בעלי תו ה-<strong class="text-white">DTCM Quality Seal</strong> — תקן האיכות של רשות התיירות של דובאי. התו מבטיח מחירים הוגנים, שירות מקצועי ותקני בטיחות גבוהים.', en: 'We promote businesses with the <strong class="text-white">DTCM Quality Seal</strong> — Dubai Tourism\'s official quality standard. The seal ensures fair pricing, professional service and high safety standards.' },
+            ethics_title: { he: 'תיירות אחראית', en: 'Responsible Tourism' },
+            ethics_subtitle: { he: 'כבדו את התרבות המקומית', en: 'Respect Local Culture' },
+            ethics_text: { he: 'כבדו את התרבות האמירתית. <strong class="text-white">הימנעו מצילום ללא רשות</strong>, לבשו בגדים צנועים במקומות קדושים, והשתמשו בספארי מדבר אתיים שאינם פוגעים בסביבה הטבעית.', en: 'Respect Emirati culture. <strong class="text-white">Avoid photographing without permission</strong>, dress modestly at sacred sites, and choose ethical desert safaris that don\'t harm the natural environment.' },
+            credits_sources: { he: 'מבוסס על מחקר עומק 2025-2026. מקורות: DTCM, DCT Abu Dhabi, Etihad Rail, RTA Dubai.', en: 'Based on in-depth research 2025-2026. Sources: DTCM, DCT Abu Dhabi, Etihad Rail, RTA Dubai.' },
+            credits_affiliate: { he: 'חלק מהקישורים באתר הם שותפויות (Affiliate Links). הדבר אינו משפיע על ההמלצות או המחירים המוצגים.', en: 'Some links on this site are affiliate links. This does not affect our recommendations or displayed prices.' },
+
+            gallery_label: { he: 'Through The Lens', en: 'Through The Lens' },
+            gallery_title: { he: 'גלריה', en: 'Gallery' },
+            gallery_sub:   { he: 'תמונות מהשטח — ממגדלי-על ועד מסגדים מרהיבים.', en: 'Photos from the field — from supertall towers to stunning mosques.' },
+        };
+
+        // =============================================
+        // BILINGUAL DATA: TRINITY
+        // =============================================
+        const trinityData = {
+            coast: {
+                color: 'dubai-teal',
+                title: { he: 'Dubai Marina & Palm — קו חוף היוקרה', en: 'Dubai Marina & Palm — The Luxury Coastline' },
+                intro: { he: 'מרינה דובאי, JBR ופאלם ג\'ומיירה מהווים את קו החוף היוקרתי ביותר בעולם. מגדלי-על, חופים מושלמים, פארקי מים ומסעדות מישלן.', en: 'Dubai Marina, JBR and Palm Jumeirah form the world\'s most luxurious coastline. Supertall towers, perfect beaches, waterparks and Michelin restaurants.' },
+                places: {
+                    he: [
+                        { name: 'Aquaventure Waterpark', desc: 'פארק המים הגדול בעולם. מגלשות אקסטרים, חוויית כריש. 320-345 AED.', icon: 'fa-water' },
+                        { name: 'Dubai Marina Walk', desc: 'טיילת 7 ק"מ בין מגדלי-על. קפה, מסעדות, שיט בדאו. חינם.', icon: 'fa-ship' },
+                        { name: 'JBR Beach', desc: 'חוף עירוני חופשי. The Walk — רחוב קניות ומסעדות בחזית הים.', icon: 'fa-umbrella-beach' },
+                        { name: 'Ski Dubai', desc: 'אתר סקי מקורה בתוך Mall of the Emirates. פינגווינים חיים! 230-350 AED.', icon: 'fa-snowflake' }
+                    ],
+                    en: [
+                        { name: 'Aquaventure Waterpark', desc: 'World\'s largest waterpark. Extreme slides, shark encounter. 320-345 AED.', icon: 'fa-water' },
+                        { name: 'Dubai Marina Walk', desc: '7 km promenade among supertalls. Cafes, restaurants, dhow cruises. Free.', icon: 'fa-ship' },
+                        { name: 'JBR Beach', desc: 'Free urban beach. The Walk — shopping and dining along the seafront.', icon: 'fa-umbrella-beach' },
+                        { name: 'Ski Dubai', desc: 'Indoor ski resort inside Mall of the Emirates. Live penguins! 230-350 AED.', icon: 'fa-snowflake' }
+                    ]
+                },
+                hotels: { he: '<strong>אולטרא-יוקרה:</strong> Atlantis The Royal (Palm) | Baccarat Hotel (Ciel Tower)<br><strong>יוקרה:</strong> Address Beach Resort (JBR) — בריכת אינפיניטי, נוף לאי<br><strong>בוטיק:</strong> Five Palm Jumeirah — חוף פרטי, בריכות על הגג', en: '<strong>Ultra-Luxury:</strong> Atlantis The Royal (Palm) | Baccarat Hotel (Ciel Tower)<br><strong>Luxury:</strong> Address Beach Resort (JBR) — Infinity pool, island views<br><strong>Boutique:</strong> Five Palm Jumeirah — Private beach, rooftop pools' }
+            },
+            downtown: {
+                color: 'dubai-deep-blue',
+                title: { he: 'Downtown & Old Dubai — לב התרבות', en: 'Downtown & Old Dubai — The Cultural Heart' },
+                intro: { he: 'דאונטאון דובאי מרכז את האייקונים — בורג\' ח\'ליפה, מוזיאון העתיד ומזרקת דובאי. דובאי העתיקה ודיירה מציעות שווקי זהב ותבלינים, מוזיאונים ואווירה אותנטית.', en: 'Downtown Dubai houses the icons — Burj Khalifa, Museum of the Future and the Dubai Fountain. Old Dubai and Deira offer gold and spice souks, museums and authentic atmosphere.' },
+                places: {
+                    he: [
+                        { name: 'Burj Khalifa', desc: 'המבנה הגבוה בעולם (828m). At the Top: 169 AED. SKY Level 148: 769 AED. הזמנה מראש חובה.', icon: 'fa-building' },
+                        { name: 'Museum of the Future', desc: '"המבנה היפה ביותר בעולם". חוויה אינטראקטיבית על עתיד האנושות. 169-399 AED.', icon: 'fa-atom' },
+                        { name: 'Dubai Frame', desc: 'מסגרת ענקית (150m) עם רצפת זכוכית. נוף ל-Old Dubai מצד אחד ול-New Dubai מהשני. 50 AED.', icon: 'fa-expand' },
+                        { name: 'Gold & Spice Souks', desc: 'שווקי דיירה ההיסטוריים. חובה להתמקח. עבירה באברה (מעבורת עץ) ב-1 AED.', icon: 'fa-coins' }
+                    ],
+                    en: [
+                        { name: 'Burj Khalifa', desc: 'World\'s tallest building (828m). At the Top: 169 AED. SKY Level 148: 769 AED. Advance booking essential.', icon: 'fa-building' },
+                        { name: 'Museum of the Future', desc: '"Most beautiful building on Earth." Interactive experience about humanity\'s future. 169-399 AED.', icon: 'fa-atom' },
+                        { name: 'Dubai Frame', desc: 'Giant frame (150m) with glass floor. Views of Old Dubai on one side, New Dubai on the other. 50 AED.', icon: 'fa-expand' },
+                        { name: 'Gold & Spice Souks', desc: 'Historic Deira markets. Bargaining expected. Cross by abra (wooden ferry) for 1 AED.', icon: 'fa-coins' }
+                    ]
+                },
+                hotels: { he: '<strong>אייקוני:</strong> Address Downtown — מול המזרקה והבורג\' ח\'ליפה<br><strong>מעצבים:</strong> Armani Hotel (בתוך Burj Khalifa!) | W Dubai — The Palm<br><strong>תקציב:</strong> Rove Downtown (~350 AED/לילה) — מיקום מעולה, מודרני ונקי', en: '<strong>Iconic:</strong> Address Downtown — Facing the Fountain & Burj Khalifa<br><strong>Designer:</strong> Armani Hotel (inside Burj Khalifa!) | W Dubai — The Palm<br><strong>Budget:</strong> Rove Downtown (~350 AED/night) — Great location, modern & clean' }
+            },
+            abudhabi: {
+                color: 'dubai-sunset',
+                title: { he: 'Abu Dhabi — בירת התרבות וההרפתקאות', en: 'Abu Dhabi — Capital of Culture & Adventure' },
+                intro: { he: 'אבו דאבי מציעה שילוב ייחודי של תרבות עילית (לובר, מוזיאון זאיד, גוגנהיים 2026) עם פארקי שעשועים מטורפים (Yas Island) ומורשת אמירתית (Qasr Al Watan, מסגד שייח\' זאיד).', en: 'Abu Dhabi offers a unique mix of high culture (Louvre, Zayed Museum, Guggenheim 2026) with epic theme parks (Yas Island) and Emirati heritage (Qasr Al Watan, Sheikh Zayed Mosque).' },
+                places: {
+                    he: [
+                        { name: 'Sheikh Zayed Grand Mosque', desc: 'אחד המסגדים היפים בעולם. 82 כיפות, 1,000 עמודים, שטיח בעבודת יד. כניסה חינם.', icon: 'fa-mosque' },
+                        { name: 'Louvre Abu Dhabi', desc: 'מוזיאון אוניברסלי מעוצב ע"י ז\'אן נובל. כיפת "גשם אור". 63 AED.', icon: 'fa-palette' },
+                        { name: 'Yas Island Parks', desc: 'Ferrari World + Warner Bros + Yas Waterworld + SeaWorld. Multi-Park: 475 AED ל-2 פארקים.', icon: 'fa-flag-checkered' },
+                        { name: 'Qasr Al Watan', desc: 'ארמון נשיאותי פתוח למבקרים. אדריכלות אסלאמית מדהימה. 65 AED.', icon: 'fa-landmark-dome' }
+                    ],
+                    en: [
+                        { name: 'Sheikh Zayed Grand Mosque', desc: 'One of the world\'s most beautiful mosques. 82 domes, 1,000 columns, handmade carpet. Free entry.', icon: 'fa-mosque' },
+                        { name: 'Louvre Abu Dhabi', desc: 'Universal museum designed by Jean Nouvel. "Rain of Light" dome. 63 AED.', icon: 'fa-palette' },
+                        { name: 'Yas Island Parks', desc: 'Ferrari World + Warner Bros + Yas Waterworld + SeaWorld. Multi-Park: 475 AED for 2 parks.', icon: 'fa-flag-checkered' },
+                        { name: 'Qasr Al Watan', desc: 'Presidential palace open to visitors. Stunning Islamic architecture. 65 AED.', icon: 'fa-landmark-dome' }
+                    ]
+                },
+                hotels: { he: '<strong>אולטרא-יוקרה:</strong> Emirates Palace Mandarin Oriental — חוויה מלכותית<br><strong>פארקים:</strong> W Abu Dhabi (Yas Island) — צמוד למעגל F1 ולפארקים<br><strong>תרבות:</strong> The WB Abu Dhabi (Yas) | Saadiyat Rotana — צמוד ללובר', en: '<strong>Ultra-Luxury:</strong> Emirates Palace Mandarin Oriental — A royal experience<br><strong>Theme Parks:</strong> W Abu Dhabi (Yas Island) — Adjacent to F1 circuit & parks<br><strong>Culture:</strong> The WB Abu Dhabi (Yas) | Saadiyat Rotana — Next to the Louvre' }
+            }
+        };
+
+        // =============================================
+        // BILINGUAL DATA: ITINERARIES
+        // =============================================
+        const itinerariesData = {
+            he: [
+                {
+                    title: 'דובאי קלאסיק',
+                    duration: '3 ימים / 2 לילות',
+                    audience: 'משפחות וזוגות בפעם הראשונה',
+                    budget: '2,000 — 4,000 AED לאדם (ללא טיסות)',
+                    steps: [
+                        { day: 'יום 1', title: 'דאונטאון ומוזיאון העתיד', details: 'נחיתה ב-DXB. מטרו לדאונטאון. ביקור במוזיאון העתיד (169 AED). ארוחת צהריים ב-Dubai Mall. אחה"צ: Burj Khalifa At the Top (169 AED) לשקיעה. ערב: מזרקת דובאי (חינם, כל 30 דקות מ-18:00).', icon: 'fa-building', color: 'dubai-teal' },
+                        { day: 'יום 2', title: 'דובאי העתיקה + ספארי מדבר', details: 'בוקר: אברה לדיירה (1 AED), שוק הזהב ושוק התבלינים. Dubai Frame (50 AED). אחה"צ: ספארי מדבר Premium (600-1,500 AED) — נהיגת דיונות, רכיבה על גמלים, ארוחת ערב בדואית תחת כוכבים.', icon: 'fa-sun', color: 'dubai-deep-blue' },
+                        { day: 'יום 3', title: 'מרינה ופאלם ג\'ומיירה', details: 'בוקר: JBR Beach + Marina Walk. אופציונלי: Aquaventure (320 AED) או Ski Dubai (230 AED). ארוחת צהריים ב-Atlantis The Royal. שופינג אחרון ב-Mall of the Emirates. טיסה בערב.', icon: 'fa-umbrella-beach', color: 'dubai-sunset' }
+                    ]
+                },
+                {
+                    title: 'דובאי + אבו דאבי — המסלול המקיף',
+                    duration: '5 ימים — דובאי ואבו דאבי',
+                    audience: 'מטיילים שרוצים הכל',
+                    budget: 'דובאי 3 ימים + אבו דאבי 2 ימים',
+                    steps: [
+                        { day: 'ימים 1-2', title: 'דובאי — אייקונים ויוקרה', details: 'יום 1: דאונטאון — Burj Khalifa, Museum of the Future, מזרקת דובאי. יום 2: Old Dubai בבוקר (Souks, Frame), ספארי מדבר Premium בערב.', icon: 'fa-city', color: 'dubai-teal' },
+                        { day: 'יום 3', title: 'דובאי — חוף והרפתקאות', details: 'JBR Beach, Marina Walk, Aquaventure (Palm Jumeirah). ארוחת ערב יוקרתית: Tresind Studio (3 כוכבי מישלן) או At.mosphere (Burj Khalifa).', icon: 'fa-water', color: 'dubai-deep-blue' },
+                        { day: 'יום 4', title: 'אבו דאבי — תרבות', details: 'אוטובוס E100 (25 AED, 2 שעות) או Etihad Rail (57 דקות). מסגד שייח\' זאיד (חינם, הגיעו ב-09:00). Louvre Abu Dhabi (63 AED). Qasr Al Watan (65 AED) לשקיעה.', icon: 'fa-mosque', color: 'dubai-sunset' },
+                        { day: 'יום 5', title: 'אבו דאבי — Yas Island', details: 'יום שלם ב-Yas Island: Ferrari World + Warner Bros World (Multi-Park 475 AED/2). Yas Island Express חינם מהתחנה. חזרה לדובאי בערב לטיסה.', icon: 'fa-flag-checkered', color: 'dubai-earth' }
+                    ]
+                }
+            ],
+            en: [
+                {
+                    title: 'Dubai Classic',
+                    duration: '3 Days / 2 Nights',
+                    audience: 'Families & couples, first-time visitors',
+                    budget: '2,000 — 4,000 AED per person (excl. flights)',
+                    steps: [
+                        { day: 'Day 1', title: 'Downtown & Museum of the Future', details: 'Land at DXB. Metro to Downtown. Visit Museum of the Future (169 AED). Lunch at Dubai Mall. Afternoon: Burj Khalifa At the Top (169 AED) for sunset. Evening: Dubai Fountain (free, every 30 min from 18:00).', icon: 'fa-building', color: 'dubai-teal' },
+                        { day: 'Day 2', title: 'Old Dubai + Desert Safari', details: 'Morning: Abra to Deira (1 AED), Gold Souk and Spice Souk. Dubai Frame (50 AED). Afternoon: Premium Desert Safari (600-1,500 AED) — dune driving, camel riding, Bedouin dinner under the stars.', icon: 'fa-sun', color: 'dubai-deep-blue' },
+                        { day: 'Day 3', title: 'Marina & Palm Jumeirah', details: 'Morning: JBR Beach + Marina Walk. Optional: Aquaventure (320 AED) or Ski Dubai (230 AED). Lunch at Atlantis The Royal. Final shopping at Mall of the Emirates. Evening flight.', icon: 'fa-umbrella-beach', color: 'dubai-sunset' }
+                    ]
+                },
+                {
+                    title: 'Dubai + Abu Dhabi — The Full Route',
+                    duration: '5 Days — Dubai and Abu Dhabi',
+                    audience: 'Travelers who want it all',
+                    budget: 'Dubai 3 days + Abu Dhabi 2 days',
+                    steps: [
+                        { day: 'Days 1-2', title: 'Dubai — Icons & Luxury', details: 'Day 1: Downtown — Burj Khalifa, Museum of the Future, Dubai Fountain. Day 2: Old Dubai in the morning (Souks, Frame), Premium Desert Safari in the evening.', icon: 'fa-city', color: 'dubai-teal' },
+                        { day: 'Day 3', title: 'Dubai — Beach & Adventure', details: 'JBR Beach, Marina Walk, Aquaventure (Palm Jumeirah). Luxury dinner: Tresind Studio (3 Michelin stars) or At.mosphere (Burj Khalifa).', icon: 'fa-water', color: 'dubai-deep-blue' },
+                        { day: 'Day 4', title: 'Abu Dhabi — Culture', details: 'Bus E100 (25 AED, 2 hours) or Etihad Rail (57 min). Sheikh Zayed Mosque (free, arrive by 09:00). Louvre Abu Dhabi (63 AED). Qasr Al Watan (65 AED) at sunset.', icon: 'fa-mosque', color: 'dubai-sunset' },
+                        { day: 'Day 5', title: 'Abu Dhabi — Yas Island', details: 'Full day at Yas Island: Ferrari World + Warner Bros World (Multi-Park 475 AED/2). Free Yas Island Express from the station. Return to Dubai in evening for flight.', icon: 'fa-flag-checkered', color: 'dubai-earth' }
+                    ]
+                }
+            ]
+        };
+
+        // =============================================
+        // CHART LABELS (bilingual)
+        // =============================================
+        const chartLabels = {
+            he: ['מטרו (נסיעה)', 'מונית (ממוצע)', 'אוטובוס בין-עירוני', 'השכרת רכב (יום)'],
+            en: ['Metro (ride)', 'Taxi (avg)', 'Intercity Bus', 'Car Rental (day)']
+        };
+        const chartDatasetLabel = { he: 'עלות משוערת (AED)', en: 'Estimated Cost (AED)' };
+
+        // =============================================
+        // GALLERY IMAGES
+        // =============================================
+        const galleryImages = [
+            { file: 'Burj Khalifa.png', he: 'בורג\' ח\'ליפה — 828 מטר', en: 'Burj Khalifa — 828 meters' },
+            { file: 'Museum of the Future.png', he: 'מוזיאון העתיד', en: 'Museum of the Future' },
+            { file: 'Sheikh Zayed Grand Mosque.png', he: 'מסגד שייח\' זאיד הגדול', en: 'Sheikh Zayed Grand Mosque' },
+            { file: 'Dubai Frame.png', he: 'דובאי פריים', en: 'Dubai Frame' },
+            { file: 'Louvre Abu Dhabi.png', he: 'לובר אבו דאבי', en: 'Louvre Abu Dhabi' },
+            { file: 'Desert Safari.png', he: 'ספארי מדבר', en: 'Desert Safari' },
+            { file: 'Aquaventure Waterpark.png', he: 'אקוונצ\'ר — פארק מים', en: 'Aquaventure Waterpark' },
+            { file: 'Ferrari World Abu Dhabi.png', he: 'פרארי וורלד אבו דאבי', en: 'Ferrari World Abu Dhabi' },
+            { file: 'Qasr Al Watan.png', he: 'קאסר אל ווטן — הארמון הנשיאותי', en: 'Qasr Al Watan — Presidential Palace' },
+            { file: 'Baccarat Hotel Dubai.png', he: 'מלון באקארה דובאי', en: 'Baccarat Hotel Dubai' },
+            { file: 'Dubai Miracle Garden.png', he: 'גן הנסים דובאי', en: 'Dubai Miracle Garden' },
+            { file: 'Ski Dubai.png', he: 'סקי דובאי', en: 'Ski Dubai' },
+            { file: 'Warner Bros World Abu Dhabi.png', he: 'וורנר בראדרס וורלד', en: 'Warner Bros World Abu Dhabi' },
+            { file: 'Global Village.png', he: 'גלובל וילג\' — 25-30 AED', en: 'Global Village — 25-30 AED' },
+            { file: 'Zayed National Museum.png', he: 'מוזיאון זאיד הלאומי', en: 'Zayed National Museum' },
+            { file: 'Guggenheim Abu Dhabi.png', he: 'גוגנהיים אבו דאבי (2026)', en: 'Guggenheim Abu Dhabi (2026)' },
+            { file: 'Mohammed Bin Rashid Library.png', he: 'ספריית מוחמד בן ראשיד', en: 'Mohammed Bin Rashid Library' },
+            { file: 'Ciel Tower.png', he: 'מגדל סיאל — המלון הגבוה בעולם', en: 'Ciel Tower — World\'s Tallest Hotel' },
+            { file: 'Natural History Museum.png', he: 'מוזיאון ההיסטוריה הטבעית', en: 'Natural History Museum' },
+            { file: 'Museum of Illusions.png', he: 'מוזיאון האשליות', en: 'Museum of Illusions' },
+            { file: 'KidZania.png', he: 'קידזניה דובאי', en: 'KidZania Dubai' },
+            { file: 'Disney Abu Dhabi.png', he: 'דיסני אבו דאבי (בקרוב)', en: 'Disney Abu Dhabi (Coming Soon)' }
+        ];
+
+        // =============================================
+        // MOBILE MENU
+        // =============================================
+        let menuOpen = false;
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                menu.classList.add('open');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                menu.classList.remove('open');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menuOpen = false;
+            menu.classList.remove('open');
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+
+        // =============================================
+        // LANGUAGE SWITCH
+        // =============================================
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('dubai-lang', lang);
+
+            const html = document.documentElement;
+            html.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
+            html.setAttribute('lang', lang);
+
+            const desktopNav = document.getElementById('desktop-nav');
+            if (lang === 'he') {
+                desktopNav.classList.add('space-x-reverse');
+            } else {
+                desktopNav.classList.remove('space-x-reverse');
+            }
+
+            document.getElementById('lang-he').classList.toggle('active', lang === 'he');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+            document.querySelectorAll('.lang-btn-mobile').forEach(btn => {
+                const isHe = btn.textContent.trim() === 'HE';
+                btn.classList.toggle('active', (isHe && lang === 'he') || (!isHe && lang === 'en'));
+            });
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (T[key] && T[key][lang]) el.textContent = T[key][lang];
+            });
+
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                const key = el.getAttribute('data-i18n-html');
+                if (T[key] && T[key][lang]) el.innerHTML = T[key][lang];
+            });
+
+            document.querySelectorAll('[data-i18n-arrow]').forEach(el => {
+                el.classList.remove('fa-arrow-left', 'fa-arrow-right');
+                el.classList.add(lang === 'he' ? 'fa-arrow-left' : 'fa-arrow-right');
+            });
+
+            renderTransportChart();
+            showItinerary(currentItinIndex);
+            renderGallery();
+
+            activeRegion = null;
+            const panel = document.getElementById('trinity-detail');
+            if (panel) { panel.style.maxHeight = '0'; panel.style.opacity = '0'; }
+            ['coast', 'downtown', 'abudhabi'].forEach(k => {
+                const card = document.getElementById('card-' + k);
+                if (card) card.classList.remove('ring-2', 'ring-dubai-teal', 'ring-dubai-deep-blue', 'ring-dubai-sunset');
+            });
+        }
+
+        // =============================================
+        // TRINITY — EXPAND/COLLAPSE
+        // =============================================
+        let activeRegion = null;
+
+        function expandRegion(key) {
+            const panel = document.getElementById('trinity-detail');
+            const content = document.getElementById('trinity-detail-content');
+            const region = trinityData[key];
+            const lang = currentLang;
+
+            ['coast', 'downtown', 'abudhabi'].forEach(k => {
+                const card = document.getElementById('card-' + k);
+                card.classList.remove('ring-2', 'ring-dubai-teal', 'ring-dubai-deep-blue', 'ring-dubai-sunset');
+            });
+
+            if (activeRegion === key) {
+                activeRegion = null;
+                panel.style.maxHeight = '0';
+                panel.style.opacity = '0';
+                return;
+            }
+
+            activeRegion = key;
+            const activeCard = document.getElementById('card-' + key);
+            activeCard.classList.add('ring-2', 'ring-' + region.color);
+
+            const placesHtml = region.places[lang].map(p => `
+                <div class="bg-dubai-sand rounded-xl p-4 flex items-start gap-3">
+                    <div class="w-10 h-10 bg-${region.color}/10 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                        <i class="fa-solid ${p.icon} text-${region.color}"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-dubai-deep-blue">${p.name}</h4>
+                        <p class="text-sm text-gray-500 mt-1">${p.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            const whereLabel = T.where_to_stay[lang];
+            content.innerHTML = `
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="h-1 w-12 bg-${region.color} rounded"></div>
+                    <h3 class="text-2xl font-display font-bold text-dubai-deep-blue">${region.title[lang]}</h3>
+                </div>
+                <p class="text-gray-600 mb-6 max-w-2xl">${region.intro[lang]}</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    ${placesHtml}
+                </div>
+                <div class="bg-dubai-deep-blue/5 rounded-xl p-5 text-sm text-gray-600">
+                    <h4 class="font-bold text-dubai-deep-blue mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-bed text-dubai-teal"></i> ${whereLabel}
+                    </h4>
+                    <p>${region.hotels[lang]}</p>
+                </div>
+            `;
+
+            panel.style.maxHeight = panel.scrollHeight + 500 + 'px';
+            panel.style.opacity = '1';
+
+            setTimeout(() => {
+                panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+
+        // =============================================
+        // CHART.JS — TRANSPORT COSTS
+        // =============================================
+        let transportChart = null;
+
+        function renderTransportChart() {
+            const ctx = document.getElementById('transportChart').getContext('2d');
+            const lang = currentLang;
+            const fontFamily = lang === 'he' ? 'Heebo' : 'Outfit';
+
+            if (transportChart) transportChart.destroy();
+
+            transportChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartLabels[lang],
+                    datasets: [{
+                        label: chartDatasetLabel[lang],
+                        data: [5, 35, 25, 185],
+                        backgroundColor: ['#8B7D6B', '#C5A059', '#E8751A', '#0F172A'],
+                        borderRadius: 8,
+                        borderSkipped: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#0F172A',
+                            titleFont: { family: fontFamily },
+                            bodyFont: { family: fontFamily },
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y.toLocaleString() + ' AED';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0,0,0,0.05)' },
+                            ticks: {
+                                font: { family: fontFamily },
+                                callback: function(value) { return value + ' AED'; }
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { family: fontFamily, size: 11 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // =============================================
+        // ITINERARIES
+        // =============================================
+        let currentItinIndex = 0;
+
+        function showItinerary(index) {
+            currentItinIndex = index;
+            const lang = currentLang;
+            const data = itinerariesData[lang][index];
+            const timelineSide = lang === 'he' ? 'pr-10' : 'pl-10';
+            const dotSide = lang === 'he' ? 'right-0' : 'left-0';
+            const lineSide = lang === 'he' ? 'right-[15px]' : 'left-[15px]';
+
+            document.querySelectorAll('.itin-tab').forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('bg-dubai-deep-blue', 'text-white', 'shadow-md');
+                    tab.classList.remove('bg-white', 'text-gray-500', 'border-gray-200');
+                } else {
+                    tab.classList.remove('bg-dubai-deep-blue', 'text-white', 'shadow-md');
+                    tab.classList.add('bg-white', 'text-gray-500', 'border-gray-200');
+                }
+            });
+
+            document.getElementById('itin-header').innerHTML = `
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div>
+                        <h3 class="text-2xl font-display font-bold text-dubai-deep-blue">${data.title}</h3>
+                        <p class="text-gray-500 mt-1">${data.audience}</p>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="inline-flex items-center gap-1.5 bg-dubai-teal/10 text-dubai-teal text-sm font-bold px-4 py-1.5 rounded-full">
+                            <i class="fa-regular fa-calendar"></i> ${data.duration}
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 bg-dubai-orange/20 text-dubai-earth text-sm font-bold px-4 py-1.5 rounded-full">
+                            <i class="fa-solid fa-wallet"></i> ${data.budget}
+                        </span>
+                    </div>
+                </div>
+            `;
+
+            const timelineHtml = data.steps.map((step, i) => {
+                const isLast = i === data.steps.length - 1;
+                return `
+                    <div class="relative ${timelineSide} ${isLast ? '' : 'pb-10'}">
+                        ${isLast ? '' : `<div class="absolute top-6 ${lineSide} bottom-0 w-0.5 bg-gray-200"></div>`}
+                        <div class="absolute ${dotSide} top-0.5 w-8 h-8 bg-${step.color} rounded-full flex items-center justify-center shadow-md">
+                            <i class="fa-solid ${step.icon} text-white text-xs"></i>
+                        </div>
+                        <div class="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                            <span class="text-xs font-bold text-${step.color} uppercase tracking-wider">${step.day}</span>
+                            <h4 class="font-bold text-lg text-dubai-deep-blue mt-1">${step.title}</h4>
+                            <p class="text-sm text-gray-500 mt-2 leading-relaxed">${step.details}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            const timelineEl = document.getElementById('itin-timeline');
+            timelineEl.classList.remove('pr-8', 'pl-8');
+            timelineEl.classList.add(lang === 'he' ? 'pr-8' : 'pl-8');
+            timelineEl.innerHTML = timelineHtml;
+        }
+
+        // =============================================
+        // GALLERY
+        // =============================================
+        function renderGallery() {
+            const lang = currentLang;
+            const grid = document.getElementById('gallery-grid');
+            grid.innerHTML = galleryImages.map(img => `
+                <div class="gallery-item relative cursor-pointer shadow-sm" onclick="openLightbox('images/gallery/${img.file}', '${img[lang].replace(/'/g, "\\'")}')">
+                    <img src="images/gallery/${img.file}" alt="${img[lang]}" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="gallery-caption absolute bottom-0 w-full p-4">
+                        <span class="text-white font-display font-bold text-sm drop-shadow-lg">${img[lang]}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // =============================================
+        // LIGHTBOX
+        // =============================================
+        function openLightbox(src, caption) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-caption').textContent = caption;
+            lb.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(e, force) {
+            if (force || e.target === document.getElementById('lightbox')) {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox(null, true);
+        });
+
+        // =============================================
+        // INIT
+        // =============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            setLanguage(currentLang);
+        });
+    </script>
+
+</body>
+</html>
